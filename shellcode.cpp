@@ -10,7 +10,7 @@
 * Specifies the maximum number of legit instructions the plugin keeps track of
 * before control flow is transferred to the shellcode.
 **/
-const unsigned int MAX_LEGIT_INSTRUCTION_LOG_SIZE = 100;
+// const unsigned int MAX_LEGIT_INSTRUCTION_LOG_SIZE = 100;
 
 /**
 * Keeps track of legit instructions before control flow is transferred to she
@@ -33,6 +33,8 @@ std::ofstream traceFile;
 * Default is shellcode.out.
 **/
 KNOB<string> outputFile(KNOB_MODE_WRITEONCE, "pintool", "o", "shellcode.out", "specify trace file name");
+KNOB<INT32> KnobMaxLegitInsLogSize(KNOB_MODE_WRITEONCE, "pintool",
+                     "max", "100", "specify max instructions size");
 
 /**
 * Prints usage information.
@@ -133,7 +135,7 @@ std::string dumpInstruction(INS ins)
 
 	// Generate diassembled string
 	ss << INS_Disassemble(ins);
-	
+
 	// Look up call information for direct calls
 	if (INS_IsCall(ins) && INS_IsDirectBranchOrCall(ins))
 	{
@@ -211,9 +213,9 @@ void traceInst(INS ins, VOID*)
 
 		legitInstructions.push_back(dumpInstruction(ins));
 
-		if (legitInstructions.size() > MAX_LEGIT_INSTRUCTION_LOG_SIZE)
+		if (legitInstructions.size() > KnobMaxLegitInsLogSize.Value())
 		{
-			// Log only up to MAX_LEGIT_INSTRUCTION_LOG_SIZE instructions or the whole
+			// Log only up to KnobMaxLegitInsLogSize.Value() instructions or the whole
 			// program before the shellcode will be dumped.
 
 			legitInstructions.pop_front();
@@ -228,6 +230,19 @@ void traceInst(INS ins, VOID*)
 **/
 VOID fini(INT32, VOID*)
 {
+    if ( dumped.empty() && !legitInstructions.empty() )
+    {
+        traceFile << endl << "Executed before" << endl;
+
+        for ( std::list<std::string>::iterator Iter = legitInstructions.begin();
+              Iter != legitInstructions.end(); ++Iter )
+        {
+            traceFile << *Iter << endl;
+        }
+    }
+
+    traceFile << endl << "-- eof --" << endl;
+
     traceFile.close();
 }
 
@@ -244,16 +259,17 @@ int main(int argc, char *argv[])
 
     string trace_header = string("#\n"
                                  "# Shellcode detector\n"
-                                 "#\n");
-    
+                                 "#\n\nMAX_LEGIT_INSTRUCTION_LOG_SIZE : ") +
+      KnobMaxLegitInsLogSize.ValueString();
+
 
     traceFile.write(trace_header.c_str(), trace_header.size());
-    
+
     INS_AddInstrumentFunction(traceInst, 0);
     PIN_AddFiniFunction(fini, 0);
 
     // Never returns
     PIN_StartProgram();
-    
+
     return 0;
 }
