@@ -260,7 +260,7 @@ int main(int argc, char *argv[])
     string trace_header = string("#\n"
                                  "# Shellcode detector\n"
                                  "#\n\nMAX_LEGIT_INSTRUCTION_LOG_SIZE : ") +
-      KnobMaxLegitInsLogSize.ValueString();
+        KnobMaxLegitInsLogSize.ValueString() + "\n\n";
 
 
     traceFile.write(trace_header.c_str(), trace_header.size());
