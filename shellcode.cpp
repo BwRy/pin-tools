@@ -199,8 +199,6 @@ void traceInst(INS ins, VOID*)
 	ADDRINT address = INS_Address(ins);
 
     std::string mod_name = getModule( address );
-    if ( !modlist.empty() && (modlist.find(mod_name) == modlist.end()) ) // not concerned
-        return;
 
 	if (isUnknownAddress(address))
 	{
@@ -215,6 +213,9 @@ void traceInst(INS ins, VOID*)
 	}
 	else
 	{
+        if ( !modlist.empty() && (modlist.find(mod_name) == modlist.end()) ) // not concerned
+            return;
+
 		// The address is a legit address, meaning it is probably not part of
 		// any shellcode. In this case we just log the instruction to dump it
 		// later to show when control flow was transfered from legit code to
