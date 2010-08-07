@@ -56,21 +56,21 @@ ImgModlist modlist;
 **/
 bool isUnknownAddress(ADDRINT address)
 {
-	// An address belongs to a known module, if the address belongs to any
-	// section of any module in the target address space.
+    // An address belongs to a known module, if the address belongs to any
+    // section of any module in the target address space.
 
-	for(IMG img=APP_ImgHead(); IMG_Valid(img); img = IMG_Next(img))
-	{
-		for(SEC sec=IMG_SecHead(img); SEC_Valid(sec); sec = SEC_Next(sec))
-		{
-			if (address >= SEC_Address(sec) && address < SEC_Address(sec) + SEC_Size(sec))
-			{
-				return false;
-			}
-		}
-	}
+    for(IMG img=APP_ImgHead(); IMG_Valid(img); img = IMG_Next(img))
+    {
+        for(SEC sec=IMG_SecHead(img); SEC_Valid(sec); sec = SEC_Next(sec))
+        {
+            if (address >= SEC_Address(sec) && address < SEC_Address(sec) + SEC_Size(sec))
+            {
+                return false;
+            }
+        }
+    }
 
-	return true;
+    return true;
 }
 
 /**
@@ -79,16 +79,16 @@ bool isUnknownAddress(ADDRINT address)
 **/
 std::string extractFilename(const std::string& filename)
 {
-	unsigned int lastBackslash = filename.rfind("\\");
+    unsigned int lastBackslash = filename.rfind("\\");
 
-	if (lastBackslash == -1)
-	{
-		return filename;
-	}
-	else
-	{
-		return filename.substr(lastBackslash + 1);
-	}
+    if (lastBackslash == -1)
+    {
+        return filename;
+    }
+    else
+    {
+        return filename.substr(lastBackslash + 1);
+    }
 }
 
 /**
@@ -98,21 +98,21 @@ std::string extractFilename(const std::string& filename)
 **/
 std::string getModule(ADDRINT address)
 {
-	// To find the module name of an address, iterate over all sections of all
-	// modules until a section is found that contains the address.
+    // To find the module name of an address, iterate over all sections of all
+    // modules until a section is found that contains the address.
 
-	for(IMG img=APP_ImgHead(); IMG_Valid(img); img = IMG_Next(img))
-	{
-		for(SEC sec=IMG_SecHead(img); SEC_Valid(sec); sec = SEC_Next(sec))
-		{
-			if (address >= SEC_Address(sec) && address < SEC_Address(sec) + SEC_Size(sec))
-			{
-				return extractFilename(IMG_Name(img));
-			}
-		}
-	}
+    for(IMG img=APP_ImgHead(); IMG_Valid(img); img = IMG_Next(img))
+    {
+        for(SEC sec=IMG_SecHead(img); SEC_Valid(sec); sec = SEC_Next(sec))
+        {
+            if (address >= SEC_Address(sec) && address < SEC_Address(sec) + SEC_Size(sec))
+            {
+                return extractFilename(IMG_Name(img));
+            }
+        }
+    }
 
-	return "";
+    return "";
 }
 
 /**
@@ -120,34 +120,34 @@ std::string getModule(ADDRINT address)
 **/
 std::string dumpInstruction(INS ins)
 {
-	std::stringstream ss;
+    std::stringstream ss;
 
-	ADDRINT address = INS_Address(ins);
+    ADDRINT address = INS_Address(ins);
 
-	// Generate address and module information
-	ss << "0x" << setfill('0') << setw(8) << uppercase << hex << address << "::" << getModule(address) << "  ";
+    // Generate address and module information
+    ss << "0x" << setfill('0') << setw(8) << uppercase << hex << address << "::" << getModule(address) << "  ";
 
-	// Generate instruction byte encoding
-	for (int i=0;i<INS_Size(ins);i++)
-	{
-		ss << setfill('0') << setw(2) << (((unsigned int) *(unsigned char*)(address + i)) & 0xFF) << " ";
-	}
+    // Generate instruction byte encoding
+    for (int i=0;i<INS_Size(ins);i++)
+    {
+        ss << setfill('0') << setw(2) << (((unsigned int) *(unsigned char*)(address + i)) & 0xFF) << " ";
+    }
 
-	for (int i=INS_Size(ins);i<8;i++)
-	{
-		ss << "   ";
-	}
+    for (int i=INS_Size(ins);i<8;i++)
+    {
+        ss << "   ";
+    }
 
-	// Generate diassembled string
-	ss << INS_Disassemble(ins);
+    // Generate diassembled string
+    ss << INS_Disassemble(ins);
 
-	// Look up call information for direct calls
-	if (INS_IsCall(ins) && INS_IsDirectBranchOrCall(ins))
-	{
-		ss << " -> " << RTN_FindNameByAddress(INS_DirectBranchOrCallTargetAddress(ins));
-	}
+    // Look up call information for direct calls
+    if (INS_IsCall(ins) && INS_IsDirectBranchOrCall(ins))
+    {
+        ss << " -> " << RTN_FindNameByAddress(INS_DirectBranchOrCallTargetAddress(ins));
+    }
 
-	return ss.str();
+    return ss.str();
 }
 
 /**
@@ -156,39 +156,39 @@ std::string dumpInstruction(INS ins)
 **/
 void dump_shellcode(std::string* instructionString)
 {
-	if (dumped.find(instructionString) != dumped.end())
-	{
-		// This check makes sure that an instruction is not dumped twice.
-		// For a complete run trace it would make sense to dump an instruction
-		// every time it is executed. However, imagine the shellcode has a
-		// tight loop that is executed a million times. The resulting log file
-		// is much easier to read if every instruction is only dumped once.
+    if (dumped.find(instructionString) != dumped.end())
+    {
+        // This check makes sure that an instruction is not dumped twice.
+        // For a complete run trace it would make sense to dump an instruction
+        // every time it is executed. However, imagine the shellcode has a
+        // tight loop that is executed a million times. The resulting log file
+        // is much easier to read if every instruction is only dumped once.
 
-		return;
-	}
+        return;
+    }
 
-	if (!legitInstructions.empty())
-	{
-		// If legit instructions have been logged before the shellcode is
-		// executed, it is now a good time to dump them to the file. This
-		// information then shows when control flow was transferred from
-		// legit code to shellcode.
+    if (!legitInstructions.empty())
+    {
+        // If legit instructions have been logged before the shellcode is
+        // executed, it is now a good time to dump them to the file. This
+        // information then shows when control flow was transferred from
+        // legit code to shellcode.
 
-		traceFile << "Executed before" << endl;
+        traceFile << "Executed before" << endl;
 
-		for (std::list<std::string>::iterator Iter = legitInstructions.begin(); Iter != legitInstructions.end(); ++Iter)
-		{
-			traceFile << *Iter << endl;
-		}
+        for (std::list<std::string>::iterator Iter = legitInstructions.begin(); Iter != legitInstructions.end(); ++Iter)
+        {
+            traceFile << *Iter << endl;
+        }
 
-		traceFile << endl << "Shellcode:" << endl;
+        traceFile << endl << "Shellcode:" << endl;
 
-		legitInstructions.clear();
-	}
+        legitInstructions.clear();
+    }
 
-	traceFile << *instructionString << std::endl;
+    traceFile << *instructionString << std::endl;
 
-	dumped.insert(instructionString);
+    dumped.insert(instructionString);
 }
 
 /**
@@ -196,41 +196,41 @@ void dump_shellcode(std::string* instructionString)
 **/
 void traceInst(INS ins, VOID*)
 {
-	ADDRINT address = INS_Address(ins);
+    ADDRINT address = INS_Address(ins);
 
     std::string mod_name = getModule( address );
 
-	if (isUnknownAddress(address))
-	{
-		// The address is an address that does not belong to any loaded module.
-		// This is potential shellcode. For these instructions a callback
-		// function is inserted that dumps information to the trace file when
-		// the instruction is actually executed.
+    if (isUnknownAddress(address))
+    {
+        // The address is an address that does not belong to any loaded module.
+        // This is potential shellcode. For these instructions a callback
+        // function is inserted that dumps information to the trace file when
+        // the instruction is actually executed.
 
-		INS_InsertCall(ins, IPOINT_BEFORE, AFUNPTR(dump_shellcode),
-			IARG_PTR, new std::string(dumpInstruction(ins)), IARG_END
-		);
-	}
-	else
-	{
+        INS_InsertCall(ins, IPOINT_BEFORE, AFUNPTR(dump_shellcode),
+                       IARG_PTR, new std::string(dumpInstruction(ins)), IARG_END
+            );
+    }
+    else
+    {
         if ( !modlist.empty() && (modlist.find(mod_name) == modlist.end()) ) // not concerned
             return;
 
-		// The address is a legit address, meaning it is probably not part of
-		// any shellcode. In this case we just log the instruction to dump it
-		// later to show when control flow was transfered from legit code to
-		// shellcode.
+        // The address is a legit address, meaning it is probably not part of
+        // any shellcode. In this case we just log the instruction to dump it
+        // later to show when control flow was transfered from legit code to
+        // shellcode.
 
-		legitInstructions.push_back(dumpInstruction(ins));
+        legitInstructions.push_back(dumpInstruction(ins));
 
-		if (legitInstructions.size() > KnobMaxLegitInsLogSize.Value())
-		{
-			// Log only up to KnobMaxLegitInsLogSize.Value() instructions or the whole
-			// program before the shellcode will be dumped.
+        if (legitInstructions.size() > KnobMaxLegitInsLogSize.Value())
+        {
+            // Log only up to KnobMaxLegitInsLogSize.Value() instructions or the whole
+            // program before the shellcode will be dumped.
 
-			legitInstructions.pop_front();
-		}
-	}
+            legitInstructions.pop_front();
+        }
+    }
 }
 
 /**
