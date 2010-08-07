@@ -4,307 +4,167 @@
 
 MAX_LEGIT_INSTRUCTION_LOG_SIZE : 300
 
-
 Executed before
-0x0099217F::Foxit Reader.exe  5E                      pop esi
-0x00992180::Foxit Reader.exe  64 89 0D 00 00 00 00    mov dword ptr fs:[0x0], ecx
-0x00992187::Foxit Reader.exe  C9                      leave 
-0x00992188::Foxit Reader.exe  C3                      ret 
-0x0098F0B0::Foxit Reader.exe  F6 44 24 08 01          test byte ptr [esp+0x8], 0x1
-0x0098F0B5::Foxit Reader.exe  74 06                   jz 0x98f0bd
-0x0098F0B7::Foxit Reader.exe  56                      push esi
-0x0098F0B8::Foxit Reader.exe  E8 0F 2B 00 00          call 0x991bcc -> .text
-0x0098F0BD::Foxit Reader.exe  8B C6                   mov eax, esi
-0x0098F0BF::Foxit Reader.exe  5E                      pop esi
-0x0098F0C0::Foxit Reader.exe  C2 04 00                ret 0x4
-0x009921E6::Foxit Reader.exe  B9 38 5D CB 00          mov ecx, 0xcb5d38
-0x009921EB::Foxit Reader.exe  E9 00 00 00 00          jmp 0x9921f0
-0x009921F0::Foxit Reader.exe  E9 73 FE FF FF          jmp 0x992068
-0x00992068::Foxit Reader.exe  56                      push esi
-0x00992069::Foxit Reader.exe  8B F1                   mov esi, ecx
-0x0099206B::Foxit Reader.exe  8B 06                   mov eax, dword ptr [esi]
-0x0099206D::Foxit Reader.exe  85 C0                   test eax, eax
-0x0099206F::Foxit Reader.exe  74 10                   jz 0x992081
-0x00992071::Foxit Reader.exe  8B 0D 00 5D CB 00       mov ecx, dword ptr [0xcb5d00]
-0x00992077::Foxit Reader.exe  85 C9                   test ecx, ecx
-0x00992079::Foxit Reader.exe  74 06                   jz 0x992081
-0x0099207B::Foxit Reader.exe  50                      push eax
-0x0099207C::Foxit Reader.exe  E8 0A FD FF FF          call 0x991d8b -> .text
-0x00992081::Foxit Reader.exe  83 26 00                and dword ptr [esi], 0x0
-0x00992084::Foxit Reader.exe  5E                      pop esi
-0x00992085::Foxit Reader.exe  C3                      ret 
-0x00991B2F::Foxit Reader.exe  B9 E0 5C CB 00          mov ecx, 0xcb5ce0
-0x00991B34::Foxit Reader.exe  E9 65 F6 FF FF          jmp 0x99119e
-0x00991194::Foxit Reader.exe  B9 84 5C CB 00          mov ecx, 0xcb5c84
-0x00991199::Foxit Reader.exe  E9 00 00 00 00          jmp 0x99119e
-0x00990A6B::Foxit Reader.exe  F6 05 40 5C CB 00 01    test byte ptr [0xcb5c40], 0x1
-0x00990A72::Foxit Reader.exe  75 11                   jnz 0x990a85
-0x00990A74::Foxit Reader.exe  80 0D 40 5C CB 00 01    or byte ptr [0xcb5c40], 0x1
-0x00990A7B::Foxit Reader.exe  B9 48 5C CB 00          mov ecx, 0xcb5c48
-0x00990A80::Foxit Reader.exe  E9 81 11 B3 FF          jmp 0x4c1c06
-0x004C1C06::Foxit Reader.exe  56                      push esi
-0x004C1C07::Foxit Reader.exe  8B F1                   mov esi, ecx
-0x004C1C09::Foxit Reader.exe  E8 0C 00 00 00          call 0x4c1c1a -> ??4IJS_Context@@QAEAAV0@ABV0@@Z
-0x004C1C1A::Foxit Reader.exe  56                      push esi
-0x004C1C1B::Foxit Reader.exe  8B F1                   mov esi, ecx
-0x004C1C1D::Foxit Reader.exe  57                      push edi
-0x004C1C1E::Foxit Reader.exe  8D 7E 10                lea edi, ptr [esi+0x10]
-0x004C1C21::Foxit Reader.exe  57                      push edi
-0x004C1C22::Foxit Reader.exe  FF 15 88 D5 9F 00       call dword ptr [0x9fd588]
-0x004C1C28::Foxit Reader.exe  8B 4E 08                mov ecx, dword ptr [esi+0x8]
-0x004C1C2B::Foxit Reader.exe  E8 6D C4 4A 00          call 0x96e09d -> .text
-0x004C1C30::Foxit Reader.exe  83 66 08 00             and dword ptr [esi+0x8], 0x0
-0x004C1C34::Foxit Reader.exe  83 66 0C 00             and dword ptr [esi+0xc], 0x0
-0x004C1C38::Foxit Reader.exe  57                      push edi
-0x004C1C39::Foxit Reader.exe  FF 15 8C D5 9F 00       call dword ptr [0x9fd58c]
-0x004C1C3F::Foxit Reader.exe  5F                      pop edi
-0x004C1C40::Foxit Reader.exe  5E                      pop esi
-0x004C1C41::Foxit Reader.exe  C3                      ret 
-0x004C1C0E::Foxit Reader.exe  83 C6 10                add esi, 0x10
-0x004C1C11::Foxit Reader.exe  56                      push esi
-0x004C1C12::Foxit Reader.exe  FF 15 90 D5 9F 00       call dword ptr [0x9fd590]
-0x004C1C18::Foxit Reader.exe  5E                      pop esi
-0x004C1C19::Foxit Reader.exe  C3                      ret 
-0x0098FABE::Foxit Reader.exe  B9 C0 59 CB 00          mov ecx, 0xcb59c0
-0x0098FAC3::Foxit Reader.exe  E9 34 F4 FF FF          jmp 0x98eefc
-0x0098EEFC::Foxit Reader.exe  B8 D8 24 9B 00          mov eax, 0x9b24d8
-0x0098EF01::Foxit Reader.exe  E8 52 D8 B3 FF          call 0x4cc758 -> unnamedImageEntryPoint
-0x0098EF06::Foxit Reader.exe  51                      push ecx
-0x0098EF07::Foxit Reader.exe  56                      push esi
-0x0098EF08::Foxit Reader.exe  57                      push edi
-0x0098EF09::Foxit Reader.exe  8B F9                   mov edi, ecx
-0x0098EF0B::Foxit Reader.exe  89 7D F0                mov dword ptr [ebp-0x10], edi
-0x0098EF0E::Foxit Reader.exe  C7 07 08 C8 A0 00       mov dword ptr [edi], 0xa0c808
-0x0098EF14::Foxit Reader.exe  83 65 FC 00             and dword ptr [ebp-0x4], 0x0
-0x0098EF18::Foxit Reader.exe  8D 77 1C                lea esi, ptr [edi+0x1c]
-0x0098EF1B::Foxit Reader.exe  8D 46 08                lea eax, ptr [esi+0x8]
-0x0098EF1E::Foxit Reader.exe  C7 06 18 C8 A0 00       mov dword ptr [esi], 0xa0c818
-0x0098EF24::Foxit Reader.exe  50                      push eax
-0x0098EF25::Foxit Reader.exe  FF 15 90 D5 9F 00       call dword ptr [0x9fd590]
-0x0098EF2B::Foxit Reader.exe  8B CE                   mov ecx, esi
-0x0098EF2D::Foxit Reader.exe  E8 F6 2D B3 FF          call 0x4c1d28 -> ??4IJS_Context@@QAEAAV0@ABV0@@Z
-0x004C1D28::Foxit Reader.exe  56                      push esi
-0x004C1D29::Foxit Reader.exe  8B F1                   mov esi, ecx
-0x004C1D2B::Foxit Reader.exe  8B 46 04                mov eax, dword ptr [esi+0x4]
-0x004C1D2E::Foxit Reader.exe  C7 06 BC 0F A1 00       mov dword ptr [esi], 0xa10fbc
-0x004C1D34::Foxit Reader.exe  85 C0                   test eax, eax
-0x004C1D36::Foxit Reader.exe  74 0B                   jz 0x4c1d43
-0x004C1D38::Foxit Reader.exe  50                      push eax
-0x004C1D39::Foxit Reader.exe  FF 15 10 D6 9F 00       call dword ptr [0x9fd610]
-0x004C1D43::Foxit Reader.exe  5E                      pop esi
-0x004C1D44::Foxit Reader.exe  C3                      ret 
-0x0098EF32::Foxit Reader.exe  83 4D FC FF             or dword ptr [ebp-0x4], 0xffffffff
-0x0098EF36::Foxit Reader.exe  8B CF                   mov ecx, edi
-0x0098EF38::Foxit Reader.exe  E8 38 F9 FD FF          call 0x96e875 -> .text
-0x0098EF3D::Foxit Reader.exe  8B 4D F4                mov ecx, dword ptr [ebp-0xc]
-0x0098EF40::Foxit Reader.exe  5F                      pop edi
-0x0098EF41::Foxit Reader.exe  5E                      pop esi
-0x0098EF42::Foxit Reader.exe  64 89 0D 00 00 00 00    mov dword ptr fs:[0x0], ecx
-0x0098EF49::Foxit Reader.exe  C9                      leave 
-0x0098EF4A::Foxit Reader.exe  C3                      ret 
-0x00973237::Foxit Reader.exe  B9 18 59 CB 00          mov ecx, 0xcb5918
-0x0097323C::Foxit Reader.exe  E9 C5 E9 B4 FF          jmp 0x4c1c06
-0x004C1C30::Foxit Reader.exe  83 66 08 00             and dword ptr [esi+0x8], 0x0
-0x004C1C34::Foxit Reader.exe  83 66 0C 00             and dword ptr [esi+0xc], 0x0
-0x004C1C38::Foxit Reader.exe  57                      push edi
-0x004C1C39::Foxit Reader.exe  FF 15 8C D5 9F 00       call dword ptr [0x9fd58c]
-0x00973205::Foxit Reader.exe  B9 40 59 CB 00          mov ecx, 0xcb5940
-0x0097320A::Foxit Reader.exe  E9 F7 E9 B4 FF          jmp 0x4c1c06
-0x009731D3::Foxit Reader.exe  B9 68 59 CB 00          mov ecx, 0xcb5968
-0x009731D8::Foxit Reader.exe  E9 29 EA B4 FF          jmp 0x4c1c06
-0x009731A1::Foxit Reader.exe  B9 90 59 CB 00          mov ecx, 0xcb5990
-0x009731A6::Foxit Reader.exe  E9 5B EA B4 FF          jmp 0x4c1c06
-0x0098F992::Foxit Reader.exe  B9 10 59 CB 00          mov ecx, 0xcb5910
-0x0098F997::Foxit Reader.exe  E9 02 18 00 00          jmp 0x99119e
-0x0098FA36::Foxit Reader.exe  56                      push esi
-0x0098FA37::Foxit Reader.exe  8B F1                   mov esi, ecx
-0x0098FA39::Foxit Reader.exe  E8 13 00 00 00          call 0x98fa51 -> .text
-0x0098FA51::Foxit Reader.exe  E9 C8 FD FF FF          jmp 0x98f81e
-0x0098F81E::Foxit Reader.exe  B8 96 1E 9B 00          mov eax, 0x9b1e96
-0x0098F823::Foxit Reader.exe  E8 30 CF B3 FF          call 0x4cc758 -> unnamedImageEntryPoint
-0x0098F828::Foxit Reader.exe  51                      push ecx
-0x0098F829::Foxit Reader.exe  56                      push esi
-0x0098F82A::Foxit Reader.exe  8B F1                   mov esi, ecx
-0x0098F82C::Foxit Reader.exe  57                      push edi
-0x0098F82D::Foxit Reader.exe  89 75 F0                mov dword ptr [ebp-0x10], esi
-0x0098F830::Foxit Reader.exe  C7 06 CC BF A0 00       mov dword ptr [esi], 0xa0bfcc
-0x0098F836::Foxit Reader.exe  8B 8E 44 20 00 00       mov ecx, dword ptr [esi+0x2044]
-0x0098F83C::Foxit Reader.exe  C7 45 FC 01 00 00 00    mov dword ptr [ebp-0x4], 0x1
-0x0098F843::Foxit Reader.exe  85 C9                   test ecx, ecx
-0x0098F845::Foxit Reader.exe  74 06                   jz 0x98f84d
-0x0098F847::Foxit Reader.exe  8B 01                   mov eax, dword ptr [ecx]
-0x0098F849::Foxit Reader.exe  6A 01                   push 0x1
-0x0098F84B::Foxit Reader.exe  FF 10                   call dword ptr [eax]
-0x0098F84D::Foxit Reader.exe  8B 8E 6C 20 00 00       mov ecx, dword ptr [esi+0x206c]
-0x0098F853::Foxit Reader.exe  8D BE 6C 20 00 00       lea edi, ptr [esi+0x206c]
-0x0098F859::Foxit Reader.exe  85 C9                   test ecx, ecx
-0x0098F85B::Foxit Reader.exe  74 19                   jz 0x98f876
-0x0098F85D::Foxit Reader.exe  8B 01                   mov eax, dword ptr [ecx]
-0x0098F85F::Foxit Reader.exe  8D 96 48 20 00 00       lea edx, ptr [esi+0x2048]
-0x0098F865::Foxit Reader.exe  52                      push edx
-0x0098F866::Foxit Reader.exe  FF 50 0C                call dword ptr [eax+0xc]
-0x0098F876::Foxit Reader.exe  80 65 FC 00             and byte ptr [ebp-0x4], 0x0
-0x0098F87A::Foxit Reader.exe  8D 8E 70 20 00 00       lea ecx, ptr [esi+0x2070]
-0x0098F880::Foxit Reader.exe  E8 E3 27 00 00          call 0x992068 -> .text
-0x0098F885::Foxit Reader.exe  8B 4D F4                mov ecx, dword ptr [ebp-0xc]
-0x0098F888::Foxit Reader.exe  5F                      pop edi
-0x0098F889::Foxit Reader.exe  5E                      pop esi
-0x0098F88A::Foxit Reader.exe  64 89 0D 00 00 00 00    mov dword ptr fs:[0x0], ecx
-0x0098F891::Foxit Reader.exe  C9                      leave 
-0x0098F892::Foxit Reader.exe  C3                      ret 
-0x0098FA3E::Foxit Reader.exe  F6 44 24 08 01          test byte ptr [esp+0x8], 0x1
-0x0098FA43::Foxit Reader.exe  74 06                   jz 0x98fa4b
-0x0098FA45::Foxit Reader.exe  56                      push esi
-0x0098FA46::Foxit Reader.exe  E8 81 21 00 00          call 0x991bcc -> .text
-0x0098FA4B::Foxit Reader.exe  8B C6                   mov eax, esi
-0x0098FA4D::Foxit Reader.exe  5E                      pop esi
-0x0098FA4E::Foxit Reader.exe  C2 04 00                ret 0x4
-0x0098F796::Foxit Reader.exe  B9 14 59 CB 00          mov ecx, 0xcb5914
-0x0098F79B::Foxit Reader.exe  E9 50 2A 00 00          jmp 0x9921f0
-0x0098F6AE::Foxit Reader.exe  F6 05 88 56 CB 00 02    test byte ptr [0xcb5688], 0x2
-0x0098F6B5::Foxit Reader.exe  75 11                   jnz 0x98f6c8
-0x0098F6B7::Foxit Reader.exe  80 0D 88 56 CB 00 02    or byte ptr [0xcb5688], 0x2
-0x0098F6BE::Foxit Reader.exe  B9 C0 58 CB 00          mov ecx, 0xcb58c0
-0x0098F6C3::Foxit Reader.exe  E9 3E 25 B3 FF          jmp 0x4c1c06
-0x0098F66E::Foxit Reader.exe  F6 05 88 56 CB 00 01    test byte ptr [0xcb5688], 0x1
-0x0098F675::Foxit Reader.exe  75 11                   jnz 0x98f688
-0x0098F677::Foxit Reader.exe  80 0D 88 56 CB 00 01    or byte ptr [0xcb5688], 0x1
-0x0098F67E::Foxit Reader.exe  B9 E8 58 CB 00          mov ecx, 0xcb58e8
-0x0098F683::Foxit Reader.exe  E9 7E 25 B3 FF          jmp 0x4c1c06
-0x0098F48F::Foxit Reader.exe  F6 05 58 56 CB 00 01    test byte ptr [0xcb5658], 0x1
-0x0098F496::Foxit Reader.exe  75 11                   jnz 0x98f4a9
-0x0098F498::Foxit Reader.exe  80 0D 58 56 CB 00 01    or byte ptr [0xcb5658], 0x1
-0x0098F49F::Foxit Reader.exe  B9 60 56 CB 00          mov ecx, 0xcb5660
-0x0098F4A4::Foxit Reader.exe  E9 5D 27 B3 FF          jmp 0x4c1c06
-0x0098F013::Foxit Reader.exe  F6 05 F0 3C CB 00 01    test byte ptr [0xcb3cf0], 0x1
-0x0098F01A::Foxit Reader.exe  75 11                   jnz 0x98f02d
-0x0098F01C::Foxit Reader.exe  80 0D F0 3C CB 00 01    or byte ptr [0xcb3cf0], 0x1
-0x0098F023::Foxit Reader.exe  B9 F8 54 CB 00          mov ecx, 0xcb54f8
-0x0098F028::Foxit Reader.exe  E9 D9 2B B3 FF          jmp 0x4c1c06
-0x004D24CB::Foxit Reader.exe  E8 10 BC FF FF          call 0x4ce0e0 -> unnamedImageEntryPoint
-0x004CE0E0::Foxit Reader.exe  6A 01                   push 0x1
-0x004CE0E2::Foxit Reader.exe  E8 02 00 00 00          call 0x4ce0e9 -> unnamedImageEntryPoint
-0x004CE0E9::Foxit Reader.exe  53                      push ebx
-0x004CE0EA::Foxit Reader.exe  56                      push esi
-0x004CE0EB::Foxit Reader.exe  57                      push edi
-0x004CE0EC::Foxit Reader.exe  6A 02                   push 0x2
-0x004CE0EE::Foxit Reader.exe  33 DB                   xor ebx, ebx
-0x004CE0F0::Foxit Reader.exe  33 FF                   xor edi, edi
-0x004CE0F2::Foxit Reader.exe  E8 7E 32 00 00          call 0x4d1375 -> unnamedImageEntryPoint
-0x004CE0F7::Foxit Reader.exe  33 F6                   xor esi, esi
-0x004CE0F9::Foxit Reader.exe  59                      pop ecx
-0x004CE0FA::Foxit Reader.exe  39 35 80 FF CC 00       cmp dword ptr [0xccff80], esi
-0x004CE100::Foxit Reader.exe  7E 74                   jle 0x4ce176
-0x004CE102::Foxit Reader.exe  A1 70 EF CC 00          mov eax, dword ptr [0xccef70]
-0x004CE107::Foxit Reader.exe  8B 04 B0                mov eax, dword ptr [eax+esi*4]
-0x004CE10A::Foxit Reader.exe  85 C0                   test eax, eax
-0x004CE10C::Foxit Reader.exe  74 5F                   jz 0x4ce16d
-0x004CE10E::Foxit Reader.exe  F6 40 0C 83             test byte ptr [eax+0xc], 0x83
-0x004CE112::Foxit Reader.exe  74 59                   jz 0x4ce16d
-0x004CE114::Foxit Reader.exe  50                      push eax
-0x004CE115::Foxit Reader.exe  56                      push esi
-0x004CE116::Foxit Reader.exe  E8 F3 43 00 00          call 0x4d250e -> unnamedImageEntryPoint
-0x004CE11B::Foxit Reader.exe  A1 70 EF CC 00          mov eax, dword ptr [0xccef70]
-0x004CE120::Foxit Reader.exe  59                      pop ecx
-0x004CE121::Foxit Reader.exe  59                      pop ecx
-0x004CE122::Foxit Reader.exe  8B 04 B0                mov eax, dword ptr [eax+esi*4]
-0x004CE125::Foxit Reader.exe  8B 48 0C                mov ecx, dword ptr [eax+0xc]
-0x004CE128::Foxit Reader.exe  F6 C1 83                test cl, 0x83
-0x004CE12B::Foxit Reader.exe  74 30                   jz 0x4ce15d
-0x004CE12D::Foxit Reader.exe  83 7C 24 10 01          cmp dword ptr [esp+0x10], 0x1
-0x004CE132::Foxit Reader.exe  75 0F                   jnz 0x4ce143
-0x004CE134::Foxit Reader.exe  50                      push eax
-0x004CE135::Foxit Reader.exe  E8 1C FF FF FF          call 0x4ce056 -> unnamedImageEntryPoint
-0x004CE056::Foxit Reader.exe  56                      push esi
-0x004CE057::Foxit Reader.exe  8B 74 24 08             mov esi, dword ptr [esp+0x8]
-0x004CE05B::Foxit Reader.exe  56                      push esi
-0x004CE05C::Foxit Reader.exe  E8 23 00 00 00          call 0x4ce084 -> unnamedImageEntryPoint
-0x004CE061::Foxit Reader.exe  85 C0                   test eax, eax
-0x004CE063::Foxit Reader.exe  59                      pop ecx
-0x004CE064::Foxit Reader.exe  74 05                   jz 0x4ce06b
-0x004CE066::Foxit Reader.exe  83 C8 FF                or eax, 0xffffffff
-0x004CE069::Foxit Reader.exe  5E                      pop esi
-0x004CE06A::Foxit Reader.exe  C3                      ret 
-0x004CE06B::Foxit Reader.exe  F6 46 0D 40             test byte ptr [esi+0xd], 0x40
-0x004CE06F::Foxit Reader.exe  74 0F                   jz 0x4ce080
-0x004CE071::Foxit Reader.exe  FF 76 10                push dword ptr [esi+0x10]
-0x004CE074::Foxit Reader.exe  E8 4B 89 00 00          call 0x4d69c4 -> unnamedImageEntryPoint
-0x004CE080::Foxit Reader.exe  33 C0                   xor eax, eax
-0x004CE082::Foxit Reader.exe  5E                      pop esi
-0x004CE083::Foxit Reader.exe  C3                      ret 
-0x004CE13A::Foxit Reader.exe  83 F8 FF                cmp eax, 0xffffffff
-0x004CE13D::Foxit Reader.exe  59                      pop ecx
-0x004CE13E::Foxit Reader.exe  74 1D                   jz 0x4ce15d
-0x004CE140::Foxit Reader.exe  43                      inc ebx
-0x004CE141::Foxit Reader.exe  EB 1A                   jmp 0x4ce15d
-0x004CE15D::Foxit Reader.exe  A1 70 EF CC 00          mov eax, dword ptr [0xccef70]
-0x004CE162::Foxit Reader.exe  FF 34 B0                push dword ptr [eax+esi*4]
-0x004CE165::Foxit Reader.exe  56                      push esi
-0x004CE166::Foxit Reader.exe  E8 F5 43 00 00          call 0x4d2560 -> unnamedImageEntryPoint
-0x004D2560::Foxit Reader.exe  8B 44 24 04             mov eax, dword ptr [esp+0x4]
-0x004D2564::Foxit Reader.exe  83 F8 14                cmp eax, 0x14
-0x004D2567::Foxit Reader.exe  7D 0B                   jnl 0x4d2574
-0x004D2569::Foxit Reader.exe  83 C0 1C                add eax, 0x1c
-0x004D256C::Foxit Reader.exe  50                      push eax
-0x004D256D::Foxit Reader.exe  E8 64 EE FF FF          call 0x4d13d6 -> unnamedImageEntryPoint
-0x004D2572::Foxit Reader.exe  59                      pop ecx
-0x004D2573::Foxit Reader.exe  C3                      ret 
-0x004CE16B::Foxit Reader.exe  59                      pop ecx
-0x004CE16C::Foxit Reader.exe  59                      pop ecx
-0x004CE16D::Foxit Reader.exe  46                      inc esi
-0x004CE16E::Foxit Reader.exe  3B 35 80 FF CC 00       cmp esi, dword ptr [0xccff80]
-0x004CE174::Foxit Reader.exe  7C 8C                   jl 0x4ce102
-0x004CE176::Foxit Reader.exe  6A 02                   push 0x2
-0x004CE178::Foxit Reader.exe  E8 59 32 00 00          call 0x4d13d6 -> unnamedImageEntryPoint
-0x004CE102::Foxit Reader.exe  A1 70 EF CC 00          mov eax, dword ptr [0xccef70]
-0x004CE107::Foxit Reader.exe  8B 04 B0                mov eax, dword ptr [eax+esi*4]
-0x004CE10A::Foxit Reader.exe  85 C0                   test eax, eax
-0x004CE10C::Foxit Reader.exe  74 5F                   jz 0x4ce16d
-0x004CE10E::Foxit Reader.exe  F6 40 0C 83             test byte ptr [eax+0xc], 0x83
-0x004CE112::Foxit Reader.exe  74 59                   jz 0x4ce16d
-0x004CE114::Foxit Reader.exe  50                      push eax
-0x004CE115::Foxit Reader.exe  56                      push esi
-0x004CE116::Foxit Reader.exe  E8 F3 43 00 00          call 0x4d250e -> unnamedImageEntryPoint
-0x004CE16D::Foxit Reader.exe  46                      inc esi
-0x004CE16E::Foxit Reader.exe  3B 35 80 FF CC 00       cmp esi, dword ptr [0xccff80]
-0x004CE174::Foxit Reader.exe  7C 8C                   jl 0x4ce102
-0x004CE176::Foxit Reader.exe  6A 02                   push 0x2
-0x004CE178::Foxit Reader.exe  E8 59 32 00 00          call 0x4d13d6 -> unnamedImageEntryPoint
-0x004CE17D::Foxit Reader.exe  83 7C 24 14 01          cmp dword ptr [esp+0x14], 0x1
-0x004CE182::Foxit Reader.exe  59                      pop ecx
-0x004CE183::Foxit Reader.exe  8B C3                   mov eax, ebx
-0x004CE185::Foxit Reader.exe  74 02                   jz 0x4ce189
-0x004CE187::Foxit Reader.exe  8B C7                   mov eax, edi
-0x004CE189::Foxit Reader.exe  5F                      pop edi
-0x004CE18A::Foxit Reader.exe  5E                      pop esi
-0x004CE18B::Foxit Reader.exe  5B                      pop ebx
-0x004CE18C::Foxit Reader.exe  C3                      ret 
-0x004CE189::Foxit Reader.exe  5F                      pop edi
-0x004CE18A::Foxit Reader.exe  5E                      pop esi
-0x004CE18B::Foxit Reader.exe  5B                      pop ebx
-0x004CE18C::Foxit Reader.exe  C3                      ret 
-0x004CE0E7::Foxit Reader.exe  59                      pop ecx
-0x004CE0E8::Foxit Reader.exe  C3                      ret 
-0x004D24D0::Foxit Reader.exe  80 3D 70 60 CB 00 00    cmp byte ptr [0xcb6070], 0x0
-0x004D24D7::Foxit Reader.exe  74 05                   jz 0x4d24de
-0x004D24D9::Foxit Reader.exe  E9 3D 7E 00 00          jmp 0x4da31b
-0x004D24DE::Foxit Reader.exe  C3                      ret 
-0x004CB041::Foxit Reader.exe  59                      pop ecx
-0x004CB042::Foxit Reader.exe  59                      pop ecx
-0x004CB043::Foxit Reader.exe  68 F8 BC B2 00          push 0xb2bcf8
-0x004CB048::Foxit Reader.exe  68 F0 BC B2 00          push 0xb2bcf0
-0x004CB04D::Foxit Reader.exe  E8 32 00 00 00          call 0x4cb084 -> unnamedImageEntryPoint
-0x004D3C43::Foxit Reader.exe  FF 35 20 64 CB 00       push dword ptr [0xcb6420]
-0x004D3C49::Foxit Reader.exe  FF 15 4C D5 9F 00       call dword ptr [0x9fd54c]
-0x004D3C4F::Foxit Reader.exe  C3                      ret 
-0x004CB052::Foxit Reader.exe  59                      pop ecx
-0x004CB053::Foxit Reader.exe  59                      pop ecx
-0x004CB054::Foxit Reader.exe  85 DB                   test ebx, ebx
-0x004CB056::Foxit Reader.exe  5B                      pop ebx
-0x004CB057::Foxit Reader.exe  74 07                   jz 0x4cb060
-0x004CB059::Foxit Reader.exe  E8 1D 00 00 00          call 0x4cb07b -> unnamedImageEntryPoint
-0x004CB060::Foxit Reader.exe  FF 74 24 08             push dword ptr [esp+0x8]
-0x004CB064::Foxit Reader.exe  89 3D 78 60 CB 00       mov dword ptr [0xcb6078], edi
-0x004CB06A::Foxit Reader.exe  FF 15 2C D4 9F 00       call dword ptr [0x9fd42c]
+0x004C985A::Foxit Reader.exe  55                      push ebp
+0x004C985B::Foxit Reader.exe  8B EC                   mov ebp, esp
+0x004C985D::Foxit Reader.exe  6A FF                   push 0xffffffff
+0x004C985F::Foxit Reader.exe  68 D8 21 A1 00          push 0xa121d8
+0x004C9864::Foxit Reader.exe  68 0C AC 4C 00          push 0x4cac0c
+0x004C9869::Foxit Reader.exe  64 A1 00 00 00 00       mov eax, dword ptr fs:[0x0]
+0x004C986F::Foxit Reader.exe  50                      push eax
+0x004C9870::Foxit Reader.exe  64 89 25 00 00 00 00    mov dword ptr fs:[0x0], esp
+0x004C9877::Foxit Reader.exe  83 EC 58                sub esp, 0x58
+0x004C987A::Foxit Reader.exe  53                      push ebx
+0x004C987B::Foxit Reader.exe  56                      push esi
+0x004C987C::Foxit Reader.exe  57                      push edi
+0x004C987D::Foxit Reader.exe  89 65 E8                mov dword ptr [ebp-0x18], esp
+0x004C9880::Foxit Reader.exe  FF 15 84 D5 9F 00       call dword ptr [0x9fd584]
+0x004C9886::Foxit Reader.exe  33 D2                   xor edx, edx
+0x004C9888::Foxit Reader.exe  8A D4                   mov dl, ah
+0x004C988A::Foxit Reader.exe  89 15 48 60 CB 00       mov dword ptr [0xcb6048], edx
+0x004C9890::Foxit Reader.exe  8B C8                   mov ecx, eax
+0x004C9892::Foxit Reader.exe  81 E1 FF 00 00 00       and ecx, 0xff
+0x004C9898::Foxit Reader.exe  89 0D 44 60 CB 00       mov dword ptr [0xcb6044], ecx
+0x004C989E::Foxit Reader.exe  C1 E1 08                shl ecx, 0x8
+0x004C98A1::Foxit Reader.exe  03 CA                   add ecx, edx
+0x004C98A3::Foxit Reader.exe  89 0D 40 60 CB 00       mov dword ptr [0xcb6040], ecx
+0x004C98A9::Foxit Reader.exe  C1 E8 10                shr eax, 0x10
+0x004C98AC::Foxit Reader.exe  A3 3C 60 CB 00          mov dword ptr [0xcb603c], eax
+0x004C98B1::Foxit Reader.exe  6A 01                   push 0x1
+0x004C98B3::Foxit Reader.exe  E8 E9 57 00 00          call 0x4cf0a1 -> unnamedImageEntryPoint
+0x004CF0A1::Foxit Reader.exe  33 C0                   xor eax, eax
+0x004CF0A3::Foxit Reader.exe  6A 00                   push 0x0
+0x004CF0A5::Foxit Reader.exe  39 44 24 08             cmp dword ptr [esp+0x8], eax
+0x004CF0A9::Foxit Reader.exe  68 00 10 00 00          push 0x1000
+0x004CF0AE::Foxit Reader.exe  0F 94 C0                setz al
+0x004CF0B1::Foxit Reader.exe  50                      push eax
+0x004CF0B2::Foxit Reader.exe  FF 15 BC D3 9F 00       call dword ptr [0x9fd3bc]
+0x004CF0B8::Foxit Reader.exe  85 C0                   test eax, eax
+0x004CF0BA::Foxit Reader.exe  A3 A8 FF CC 00          mov dword ptr [0xccffa8], eax
+0x004CF0BF::Foxit Reader.exe  74 36                   jz 0x4cf0f7
+0x004CF0C1::Foxit Reader.exe  E8 93 FE FF FF          call 0x4cef59 -> unnamedImageEntryPoint
+0x004CEF59::Foxit Reader.exe  55                      push ebp
+0x004CEF5A::Foxit Reader.exe  8B EC                   mov ebp, esp
+0x004CEF5C::Foxit Reader.exe  B8 2C 12 00 00          mov eax, 0x122c
+0x004CEF61::Foxit Reader.exe  E8 7A BF FF FF          call 0x4caee0 -> unnamedImageEntryPoint
+0x004CAEE0::Foxit Reader.exe  51                      push ecx
+0x004CAEE1::Foxit Reader.exe  3D 00 10 00 00          cmp eax, 0x1000
+0x004CAEE6::Foxit Reader.exe  8D 4C 24 08             lea ecx, ptr [esp+0x8]
+0x004CAEEA::Foxit Reader.exe  72 14                   jb 0x4caf00
+0x004CAEEC::Foxit Reader.exe  81 E9 00 10 00 00       sub ecx, 0x1000
+0x004CAEF2::Foxit Reader.exe  2D 00 10 00 00          sub eax, 0x1000
+0x004CAEF7::Foxit Reader.exe  85 01                   test dword ptr [ecx], eax
+0x004CAEF9::Foxit Reader.exe  3D 00 10 00 00          cmp eax, 0x1000
+0x004CAEFE::Foxit Reader.exe  73 EC                   jnb 0x4caeec
+0x004CAF00::Foxit Reader.exe  2B C8                   sub ecx, eax
+0x004CAF02::Foxit Reader.exe  8B C4                   mov eax, esp
+0x004CAF04::Foxit Reader.exe  85 01                   test dword ptr [ecx], eax
+0x004CAF06::Foxit Reader.exe  8B E1                   mov esp, ecx
+0x004CAF08::Foxit Reader.exe  8B 08                   mov ecx, dword ptr [eax]
+0x004CAF0A::Foxit Reader.exe  8B 40 04                mov eax, dword ptr [eax+0x4]
+0x004CAF0D::Foxit Reader.exe  50                      push eax
+0x004CAF0E::Foxit Reader.exe  C3                      ret 
+0x004CEF66::Foxit Reader.exe  8D 85 68 FF FF FF       lea eax, ptr [ebp-0x98]
+0x004CEF6C::Foxit Reader.exe  53                      push ebx
+0x004CEF6D::Foxit Reader.exe  50                      push eax
+0x004CEF6E::Foxit Reader.exe  C7 85 68 FF FF FF 94 00 00 00 mov dword ptr [ebp-0x98], 0x94
+0x004CEF78::Foxit Reader.exe  FF 15 C4 D3 9F 00       call dword ptr [0x9fd3c4]
+0x004CEF7E::Foxit Reader.exe  85 C0                   test eax, eax
+0x004CEF80::Foxit Reader.exe  74 1A                   jz 0x4cef9c
+0x004CEF82::Foxit Reader.exe  83 BD 78 FF FF FF 02    cmp dword ptr [ebp-0x88], 0x2
+0x004CEF89::Foxit Reader.exe  75 11                   jnz 0x4cef9c
+0x004CEF8B::Foxit Reader.exe  83 BD 6C FF FF FF 05    cmp dword ptr [ebp-0x94], 0x5
+0x004CEF92::Foxit Reader.exe  72 08                   jb 0x4cef9c
+0x004CEF94::Foxit Reader.exe  6A 01                   push 0x1
+0x004CEF96::Foxit Reader.exe  58                      pop eax
+0x004CEF97::Foxit Reader.exe  E9 02 01 00 00          jmp 0x4cf09e
+0x004CF09E::Foxit Reader.exe  5B                      pop ebx
+0x004CF09F::Foxit Reader.exe  C9                      leave 
+0x004CF0A0::Foxit Reader.exe  C3                      ret 
+0x004CF0C6::Foxit Reader.exe  83 F8 03                cmp eax, 0x3
+0x004CF0C9::Foxit Reader.exe  A3 AC FF CC 00          mov dword ptr [0xccffac], eax
+0x004CF0CE::Foxit Reader.exe  75 0D                   jnz 0x4cf0dd
+0x004CF0D0::Foxit Reader.exe  68 F8 03 00 00          push 0x3f8
+0x004CF0D5::Foxit Reader.exe  E8 5E 10 00 00          call 0x4d0138 -> unnamedImageEntryPoint
+
+Shellcode:
+0x541F0790::  55                      push ebp
+0x541F0791::  8B EC                   mov ebp, esp
+0x541F0793::  56                      push esi
+0x541F0794::  8B 75 10                mov esi, dword ptr [ebp+0x10]
+Executed before
+0x004CF0DD::Foxit Reader.exe  83 F8 02                cmp eax, 0x2
+
+Shellcode:
+0x541F0797::  57                      push edi
+Executed before
+0x004CF0E0::Foxit Reader.exe  75 18                   jnz 0x4cf0fa
+
+Shellcode:
+0x541F0798::  8B 7D 0C                mov edi, dword ptr [ebp+0xc]
+0x541F079B::  83 FF 01                cmp edi, 0x1
+Executed before
+0x004CF0E2::Foxit Reader.exe  E8 98 1B 00 00          call 0x4d0c7f -> unnamedImageEntryPoint
+
+Shellcode:
+0x541F079E::  75 19                   jnz 0x541f07b9
+0x541F07B9::  83 FF 02                cmp edi, 0x2
+0x541F07BC::  74 1E                   jz 0x541f07dc
+Executed before
+0x004CF0FA::Foxit Reader.exe  6A 01                   push 0x1
+0x004CF0FC::Foxit Reader.exe  58                      pop eax
+0x004CF0FD::Foxit Reader.exe  C3                      ret 
+
+Shellcode:
+0x541F07DC::  80 3D 3C 8B 48 54 00    cmp byte ptr [0x54488b3c], 0x0
+0x541F07E3::  75 56                   jnz 0x541f083b
+Executed before
+0x004C98B8::Foxit Reader.exe  59                      pop ecx
+0x004C98B9::Foxit Reader.exe  85 C0                   test eax, eax
+0x004C98BB::Foxit Reader.exe  75 08                   jnz 0x4c98c5
+0x004C98BD::Foxit Reader.exe  6A 1C                   push 0x1c
+0x004C98BF::Foxit Reader.exe  E8 C2 00 00 00          call 0x4c9986 -> unnamedImageEntryPoint
+0x004C98C5::Foxit Reader.exe  E8 F4 54 00 00          call 0x4cedbe -> unnamedImageEntryPoint
+
+Shellcode:
+0x541F083B::  5F                      pop edi
+0x541F083C::  B0 01                   mov al, 0x1
+0x541F083E::  5E                      pop esi
+0x541F083F::  5D                      pop ebp
+0x541F0840::  C2 0C 00                ret 0xc
+Executed before
+0x004CEDBE::Foxit Reader.exe  56                      push esi
+0x004CEDBF::Foxit Reader.exe  E8 88 25 00 00          call 0x4d134c -> unnamedImageEntryPoint
+
+Shellcode:
+0x5500BC70::  55                      push ebp
+0x5500BC71::  8B EC                   mov ebp, esp
+0x5500BC73::  56                      push esi
+0x5500BC74::  8B 75 10                mov esi, dword ptr [ebp+0x10]
+0x5500BC77::  57                      push edi
+0x5500BC78::  8B 7D 0C                mov edi, dword ptr [ebp+0xc]
+0x5500BC7B::  83 FF 01                cmp edi, 0x1
+0x5500BC7E::  75 19                   jnz 0x5500bc99
+Executed before
+0x004D134C::Foxit Reader.exe  56                      push esi
+0x004D134D::Foxit Reader.exe  8B 35 94 D5 9F 00       mov esi, dword ptr [0x9fd594]
+0x004D1353::Foxit Reader.exe  FF 35 8C 1D BA 00       push dword ptr [0xba1d8c]
+0x004D1359::Foxit Reader.exe  FF D6                   call esi
+
+Shellcode:
+0x5500BC99::  83 FF 02                cmp edi, 0x2
+0x5500BC9C::  74 1E                   jz 0x5500bcbc
+0x5500BCBC::  80 3D 38 85 1D 55 00    cmp byte ptr [0x551d8538], 0x0
+0x5500BCC3::  75 56                   jnz 0x5500bd1b
+Executed before
+0x004D135B::Foxit Reader.exe  FF 35 7C 1D BA 00       push dword ptr [0xba1d7c]
+0x004D1361::Foxit Reader.exe  FF D6                   call esi
+
+Shellcode:
+0x5500BD1B::  5F                      pop edi
+0x5500BD1C::  B0 01                   mov al, 0x1
+0x5500BD1E::  5E                      pop esi
+0x5500BD1F::  5D                      pop ebp
+0x5500BD20::  C2 0C 00                ret 0xc
 
 -- eof --
