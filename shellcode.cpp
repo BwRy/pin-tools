@@ -41,6 +41,8 @@ KNOB<std::string> KnobModuleConcerned(KNOB_MODE_APPEND, "pintool",
 typedef std::set<std::string> ImgModlist;
 ImgModlist modlist;
 
+typedef std::list<REG> RegList;
+
 /**
  * Prints usage information.
  **/
@@ -150,11 +152,29 @@ std::string dumpInstruction(INS ins)
     return ss.str();
 }
 
+std::string dumpContext(CONTEXT* ctxt)
+{
+    std::stringstream ss;
+
+    ss << "eax = " << setw(8) << hex << PIN_GetContextReg(ctxt, REG_EAX) << " "
+       << "ebx = " << setw(8) << hex << PIN_GetContextReg(ctxt, REG_EBX) << " "
+       << "ecx = " << setw(8) << hex << PIN_GetContextReg(ctxt, REG_ECX) << " "
+       << "edx = " << setw(8) << hex << PIN_GetContextReg(ctxt, REG_EDX) << " "
+       << "esi = " << setw(8) << hex << PIN_GetContextReg(ctxt, REG_ESI) << " "
+       << "edi = " << setw(8) << hex << PIN_GetContextReg(ctxt, REG_EDI) << std::endl
+       << "eip = " << setw(8) << hex << PIN_GetContextReg(ctxt, REG_EIP) << " "
+       << "esp = " << setw(8) << hex << PIN_GetContextReg(ctxt, REG_ESP) << " "
+       << "ebp = " << setw(8) << hex << PIN_GetContextReg(ctxt, REG_EBP) << " "
+       << "eflags = " << setw(8) << hex << PIN_GetContextReg(ctxt, REG_EFLAGS);
+
+    return ss.str();
+}
+
 /**
 * Callback function that is executed every time an instruction identified as
 * potential shellcode is executed.
 **/
-void dump_shellcode(std::string* instructionString)
+void dump_shellcode(std::string* instructionString, RegList* regs, CONTEXT* ctxt)
 {
     if (dumped.find(instructionString) != dumped.end())
     {
@@ -174,7 +194,7 @@ void dump_shellcode(std::string* instructionString)
         // information then shows when control flow was transferred from
         // legit code to shellcode.
 
-        traceFile << "Executed before" << endl;
+        traceFile << endl << "Executed before" << endl;
 
         for (std::list<std::string>::iterator Iter = legitInstructions.begin(); Iter != legitInstructions.end(); ++Iter)
         {
@@ -186,7 +206,14 @@ void dump_shellcode(std::string* instructionString)
         legitInstructions.clear();
     }
 
-    traceFile << *instructionString << std::endl;
+    traceFile << dumpContext(ctxt) << std::endl << *instructionString;
+
+    // for ( std::list<REG>::iterator iter = (*regs).begin(); iter != (*regs).end(); ++iter )
+    // {
+    //     traceFile << REG_StringShort( *iter ) << " = " << PIN_GetContextReg(ctxt, *iter) << " ";
+    // }
+
+    traceFile << std::endl;
 
     dumped.insert(instructionString);
 }
@@ -199,6 +226,17 @@ void traceInst(INS ins, VOID*)
     ADDRINT address = INS_Address(ins);
 
     std::string mod_name = getModule( address );
+    RegList regs;
+
+    for ( UINT32 i = 0; i < INS_OperandCount(ins); i++ )
+    {
+        if ( INS_OperandIsReg(ins, i) )
+        {
+            REG x = INS_OperandReg(ins, i);
+            if ( x != REG_INVALID() )
+                regs.push_back( x );
+        }
+    }
 
     if (isUnknownAddress(address))
     {
@@ -208,7 +246,9 @@ void traceInst(INS ins, VOID*)
         // the instruction is actually executed.
 
         INS_InsertCall(ins, IPOINT_BEFORE, AFUNPTR(dump_shellcode),
-                       IARG_PTR, new std::string(dumpInstruction(ins)), IARG_END
+                       IARG_PTR, new std::string(dumpInstruction(ins)),
+                       IARG_PTR, &regs,
+                       IARG_CONTEXT, IARG_END
             );
     }
     else
