@@ -34,12 +34,17 @@ std::ofstream traceFile;
 **/
 KNOB<string> outputFile(KNOB_MODE_WRITEONCE, "pintool", "o", "shellcode.out", "specify trace file name");
 KNOB<INT32> KnobMaxLegitInsLogSize(KNOB_MODE_WRITEONCE, "pintool",
-                     "max", "100", "specify max instructions size");
+                                   "max", "100", "specify max instructions size");
+KNOB<std::string> KnobModuleConcerned(KNOB_MODE_APPEND, "pintool",
+                                      "mc", "", "list of modules for concerned");
+
+typedef std::set<std::string> ImgModlist;
+ImgModlist modlist;
 
 /**
-* Prints usage information.
-**/
-INT32 usage()
+ * Prints usage information.
+ **/
+    INT32 usage()
 {
     cerr << "This tool produces a call trace." << endl << endl;
     cerr << KNOB_BASE::StringKnobSummary() << endl;
@@ -193,6 +198,10 @@ void traceInst(INS ins, VOID*)
 {
 	ADDRINT address = INS_Address(ins);
 
+    std::string mod_name = getModule( address );
+    if ( !modlist.empty() && (modlist.find(mod_name) == modlist.end()) ) // not concerned
+        return;
+
 	if (isUnknownAddress(address))
 	{
 		// The address is an address that does not belong to any loaded module.
@@ -262,6 +271,11 @@ int main(int argc, char *argv[])
                                  "#\n\nMAX_LEGIT_INSTRUCTION_LOG_SIZE : ") +
         KnobMaxLegitInsLogSize.ValueString() + "\n\n";
 
+    for ( UINT32 i = 0; i < KnobModuleConcerned.NumberOfValues(); i++ )
+    {
+        LOG( "[+] ... " + KnobModuleConcerned.Value(i) + "\n" );
+        modlist.insert( KnobModuleConcerned.Value(i) );
+    }
 
     traceFile.write(trace_header.c_str(), trace_header.size());
 
